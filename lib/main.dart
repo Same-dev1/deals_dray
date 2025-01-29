@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'DealsDray',
-      initialRoute: '/register',
+      initialRoute: '/splash',
       initialBinding: SplashBinding(),
       theme: ThemeData(
         useMaterial3: false,

@@ -1,3 +1,4 @@
+import 'package:app/controllers/login_controller.dart';
 import 'package:app/controllers/otp_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,6 +29,9 @@ class OtpScreen extends GetView<OtpController> {
             Pinput(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 length: 4,
+                onSubmitted: (value) {
+                  controller.verifyOtp(controller.otpController.text);
+                },
                 controller: controller.otpController,
                 defaultPinTheme: PinTheme(
                     width: 50,
@@ -43,12 +47,11 @@ class OtpScreen extends GetView<OtpController> {
                 children: [
                   Text(controller.timerText.value),
                   TextButton(
-                    onPressed: controller.isButtonDisabled.value
-                        ? null
-                        : () {
-                            controller.verifyOtp(controller.otpController.text);
-                            controller.resetTimer();
-                          },
+                    onPressed: controller.isButtonDisabled.value ? null : () {
+                      LoginController loginController = Get.find();
+                      loginController.sendOtp();
+                      controller.resetTimer();
+                    },
                     child: const Text('SEND AGAIN'),
                   ),
                 ],

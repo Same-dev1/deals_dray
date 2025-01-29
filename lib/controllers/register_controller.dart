@@ -9,14 +9,14 @@ class RegisterController extends GetxController {
   final passwordController = TextEditingController();
   final referralCodeController = TextEditingController();
   var isLoading = false.obs;
+  late String userId;
 
 
-  late final String userId;
 
   @override
   void onInit() {
     super.onInit();
-    userId = Get.arguments?['userId'] ?? '';
+    userId = Get.arguments['userId'];
   }
 
   Future<void> login() async {

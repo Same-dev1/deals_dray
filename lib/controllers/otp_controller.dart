@@ -31,7 +31,8 @@ class OtpController extends GetxController {
         "deviceId": deviceId,
         "userId": userId,
       };
-      Logger().d('Sending OTP verification request: ${jsonEncode(requestBody)}');
+      Logger()
+          .d('Sending OTP verification request: ${jsonEncode(requestBody)}');
 
       final response = await http.post(
         Uri.parse('http://devapiv4.dealsdray.com/api/v2/user/otp/verification'),
@@ -39,7 +40,8 @@ class OtpController extends GetxController {
         headers: {'Content-Type': 'application/json'},
       );
 
-      Logger().d('OTP verification response status code: ${response.statusCode}');
+      Logger()
+          .d('OTP verification response status code: ${response.statusCode}');
       Logger().d('OTP verification response body: ${response.body}');
 
       if (response.statusCode == 200) {
@@ -50,8 +52,9 @@ class OtpController extends GetxController {
           Logger().d('User is existing. Navigating to home screen.');
           Get.offNamed('/home');
         } else {
-          Logger().d('User is new. Navigating to register screen with userId: $userId');
-          Get.offNamed('/register', arguments: userId);
+          Logger().d(
+              'User is new. Navigating to register screen with userId: $userId');
+          Get.offNamed('/register', arguments: {'userId': userId});
         }
       } else {
         Logger().d('Failed to verify OTP. Status code: ${response.statusCode}');
@@ -63,7 +66,6 @@ class OtpController extends GetxController {
       Get.snackbar('Error', e.toString());
     }
   }
-
 
   OtpController() {
     remainingSeconds = timerSeconds.obs;
