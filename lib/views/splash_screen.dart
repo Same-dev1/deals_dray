@@ -22,7 +22,7 @@ class SplashScreen extends GetView<SplashController> {
               ],
       )
           : Center(
-        child: Text('Welcome to DealsDray'),
+        child: Text('There is a problem with the internet connection'),
       )),
     );
   }
